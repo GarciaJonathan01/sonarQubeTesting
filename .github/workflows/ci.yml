@@ -22,10 +22,6 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-                
-    - name: Set up Maven
-      uses: actions/setup-maven@v2
-
     - name: Install dependencies
       run: |
         mvn clean install
