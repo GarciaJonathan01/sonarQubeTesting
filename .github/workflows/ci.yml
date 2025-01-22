@@ -1,0 +1,39 @@
+name: Build and Analyze with SonarQube
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up JDK
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+
+    - name: Install dependencies
+      run: |
+        .\mvnw clean install
+
+    - name: Run tests
+      run: |
+        .\mvnw test
+
+    - name: SonarQube Analysis
+      uses: sonarsource/sonarcloud-github-action@v2
+      with:
+        projectKey: 'TestingSQ'
+        projectName: 'GarciaJonathan01/sonarQubeTesting'
+        sonar.host.url: 'http://localhost:9000'
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
