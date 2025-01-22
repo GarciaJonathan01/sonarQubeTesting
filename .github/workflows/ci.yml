@@ -19,7 +19,7 @@ jobs:
       - uses: SonarSource/sonarqube-scan-action@v4
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}  # Asegúrate de que este valor sea una URL válida (http:// o https://)
+          SONAR_HOST_URL: 'http://localhost:9000'  # Asegúrate de que este valor sea una URL válida (http:// o https://)
 
       # Si deseas que el trabajo falle si el Quality Gate está rojo, puedes descomentar las siguientes líneas.
       # - uses: SonarSource/sonarqube-quality-gate-action@v1
