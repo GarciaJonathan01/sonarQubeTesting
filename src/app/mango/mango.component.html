@@ -1,0 +1,42 @@
+<div class="card d-flex flex-row align-items-center p-4" style="height: 80vh;">
+  <!-- Imagen a la izquierda -->
+  <img [src]="mg.src" [alt]="mg.alt" 
+       class="card-img-left img-thumbnail me-4" 
+       style="width: 500px; height: 500px; object-fit: cover;">
+
+  <!-- Información a la derecha -->
+  <div class="card-body" style="flex: 1;">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2 class="card-title display-4">Nombre: {{ nombreFruta }}</h2>
+      
+    </div>
+
+    <ng-container *ngIf="!editMode; else editTemplate">
+      <p class="card-text fs-4">Descripción: {{ descripcionFruta }}</p>
+      <p class="card-text fs-4">Peso: {{ pesoFruta }} kg</p>
+      <button class="btn btn-primary btn-lg mt-4  me-5" (click)="toggleEditMode()">Editar</button>
+      <button class="btn btn-danger btn-lg mt-4" (click)="eliminarFruta()">Eliminar</button>
+    </ng-container>
+
+    <ng-template #editTemplate>
+      <div class="mb-3">
+        <label for="nombre" class="form-label fs-5">Nombre</label>
+        <input id="nombre" class="form-control" [(ngModel)]="nombreFruta">
+      </div>
+      <div class="mb-3">
+        <label for="descripcion" class="form-label fs-5">Descripción</label>
+        <textarea id="descripcion" class="form-control" [(ngModel)]="descripcionFruta"></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="peso" class="form-label fs-5">Peso (kg)</label>
+        <input id="peso" type="number" class="form-control" [(ngModel)]="pesoFruta">
+      </div>
+      <button class="btn btn-success btn-lg mt-4" (click)="saveChanges()">Aceptar</button>
+    </ng-template>
+  </div>
+</div>
+
+
+
+
+<router-outlet/> 

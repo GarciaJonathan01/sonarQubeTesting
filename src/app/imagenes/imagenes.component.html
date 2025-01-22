@@ -1,0 +1,16 @@
+<div class="container mt-4">
+    <div class="row">
+      @for (imga of mg; track imga.src) {
+        <div class="col-md-4 mb-3">
+          <div class="card">
+            <img src="{{ imga.src }}" alt="{{ imga.alt }}" class="card-img-top img-fluid" style="max-height: 250px; max-height: 210px; object-fit: cover;">
+            <div class="card-body text-center">
+              <a class="card-text fs-5 dropdown-item" [routerLink]="['/' + (imga.alt | lowercase)]">{{ imga.alt }}</a>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+</div>
+<router-outlet></router-outlet>
+  
