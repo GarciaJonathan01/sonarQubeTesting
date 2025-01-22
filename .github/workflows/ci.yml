@@ -10,7 +10,7 @@ on:
 
 jobs:
   build-and-test:
-    runs-on: windows-latest
+    runs-on: self-hosted
 
     steps:
     - name: Checkout code
@@ -22,16 +22,13 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    - name: Set up Maven
-      uses: actions/setup-maven@v2  # Agregar paso para instalar Maven
-
     - name: Install dependencies
       run: |
-        mvn clean install  # Usar mvn para instalar dependencias
+        mvn clean install
 
     - name: Run tests
       run: |
-        mvn test  # Usar mvn para ejecutar las pruebas
+        mvnw test
 
     - name: SonarQube Analysis
       uses: sonarsource/sonarcloud-github-action@v2
@@ -41,4 +38,3 @@ jobs:
         sonar.host.url: 'http://localhost:9000'
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
