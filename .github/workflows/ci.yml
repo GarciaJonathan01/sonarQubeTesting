@@ -28,7 +28,7 @@ jobs:
 
     - name: Run tests
       run: |
-        mvnw test
+        mvn test
 
     - name: SonarQube Analysis
       uses: sonarsource/sonarcloud-github-action@v2
