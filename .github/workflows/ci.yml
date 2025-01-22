@@ -24,7 +24,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        .\mvnw clean install
+        mvn clean install
 
     - name: Run tests
       run: |
